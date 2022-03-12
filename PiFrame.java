@@ -18,7 +18,7 @@ class PiFrame {
 
 class PiGame extends JPanel implements MouseListener, KeyListener {
   String pi = "314159265358979323846264338327950288419716939937510582097494459230781640628620899862803482534211706798214808651328230664709384460955058223172535940812848111745028410270193852110555964462294895493038196";
-  int i = 0;
+  int i = -1;
   int me = -1;
   boolean start = false;
   public PiGame() {
@@ -42,12 +42,10 @@ class PiGame extends JPanel implements MouseListener, KeyListener {
       if (me == pi.charAt(i) - '0') {
         correct = "correct.";
         g.setColor(Color.BLUE);
-        i++;
       }
       else {
         correct = "wrong.";
         g.setColor(Color.RED);
-        i++;
       }
       g.drawString("You are " + correct, 20, 110);
       g.setColor(Color.BLACK);
@@ -60,11 +58,12 @@ class PiGame extends JPanel implements MouseListener, KeyListener {
     if (c >= '0' && c <= '9') {
       start = true;
       me = c - '0';
+      i++;
     }
     else if (c == 'x') {
       start = false;
       me = -1;
-      i = 0;
+      i = -1;
     }
     repaint();
   }
